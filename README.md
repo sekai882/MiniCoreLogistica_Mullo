@@ -158,7 +158,7 @@ El proyecto incluye un `Dockerfile` multi-etapa optimizado para despliegue en pl
 |---------|--------|
 | 🌐 **Proyecto en Vivo** | [https://minicore-logistica-mullo.onrender.com](https://minicore-logistica-mullo.onrender.com) |
 | 📂 **Repositorio GitHub** | [https://github.com/sekai882/MiniCoreLogistica_Mullo](https://github.com/sekai882/MiniCoreLogistica_Mullo) |
-| 🎥 **Video Explicativo** | _[Pendiente — Insertar enlace de YouTube/Loom aquí]_ |
+| 🎥 **Video Explicativo** | [https://youtu.be/t0ECiZal6K4](https://youtu.be/t0ECiZal6K4) |
 
 ---
 
