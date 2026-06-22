@@ -11,96 +11,52 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #6366f1, #a78bfa, #38bdf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
         .table-row-hover:hover {
-            background: rgba(99, 102, 241, 0.08);
-            transition: background 0.2s ease;
-        }
-        .btn-glow {
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
-            transition: all 0.3s ease;
-        }
-        .btn-glow:hover {
-            box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
-            transform: translateY(-1px);
-        }
-        .fade-in {
-            animation: fadeIn 0.6s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        input[type="date"] {
-            color-scheme: dark;
+            background-color: #f8fafc;
         }
     </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-gray-950 via-slate-900 to-gray-950 text-gray-100">
+<body class="min-h-screen bg-slate-50 text-slate-800">
 
-    <!-- Background decorative elements -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute -top-40 -right-40 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl"></div>
-    </div>
-
-    <div class="relative z-10 max-w-6xl mx-auto px-4 py-10">
+    <div class="max-w-6xl mx-auto px-4 py-10">
 
         <!-- HEADER -->
-        <header class="text-center mb-10 fade-in">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium mb-6">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                </svg>
-                <span>Patrón MVC · Spring Boot + Thymeleaf + JPA</span>
-            </div>
-            <h1 class="text-4xl md:text-5xl font-extrabold gradient-text mb-3">
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-indigo-900 mb-3">
                 Calculador de Costos de Distribución Logística
             </h1>
-            <p class="text-gray-400 text-lg max-w-2xl mx-auto">
-                Consulta el reporte de costos por repartidor filtrando por rango de fechas.
-                El sistema calcula automáticamente el costo total basado en el peso y la tarifa por zona.
+            <p class="text-slate-500 text-base max-w-xl mx-auto">
+                Filtra por rango de fechas para generar el reporte de costos por repartidor, zona y tarifa aplicada.
             </p>
         </header>
 
         <!-- FORMULARIO DE FILTRADO -->
-        <section class="glass rounded-2xl p-6 md:p-8 mb-8 fade-in" style="animation-delay: 0.1s;">
+        <section class="bg-white border border-slate-200 shadow-sm rounded-xl p-6 md:p-8 mb-8">
             <form th:action="@{/}" method="get" class="flex flex-col md:flex-row items-end gap-4">
                 <div class="flex-1 w-full">
-                    <label for="fechaInicio" class="block text-sm font-semibold text-gray-300 mb-2">
+                    <label for="fechaInicio" class="block text-sm font-semibold text-slate-700 mb-2">
                         Fecha Inicio
                     </label>
                     <input type="date" id="fechaInicio" name="fechaInicio" th:value="${fechaInicio}"
-                           class="w-full px-4 py-3 bg-gray-800/60 border border-gray-700 rounded-xl text-gray-100
-                                  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent
-                                  transition-all duration-200 placeholder-gray-500"/>
+                           class="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-lg text-slate-900
+                                  focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400
+                                  transition-all duration-200"/>
                 </div>
                 <div class="flex-1 w-full">
-                    <label for="fechaFin" class="block text-sm font-semibold text-gray-300 mb-2">
+                    <label for="fechaFin" class="block text-sm font-semibold text-slate-700 mb-2">
                         Fecha Fin
                     </label>
                     <input type="date" id="fechaFin" name="fechaFin" th:value="${fechaFin}"
-                           class="w-full px-4 py-3 bg-gray-800/60 border border-gray-700 rounded-xl text-gray-100
-                                  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent
-                                  transition-all duration-200 placeholder-gray-500"/>
+                           class="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-lg text-slate-900
+                                  focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400
+                                  transition-all duration-200"/>
                 </div>
                 <div class="w-full md:w-auto">
                     <button type="submit"
-                            class="w-full md:w-auto px-8 py-3 bg-indigo-600 hover:bg-indigo-500 text-white
-                                   font-semibold rounded-xl btn-glow flex items-center justify-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+                            class="w-full md:w-auto px-8 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white
+                                   font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                         </svg>
                         Filtrar y Procesar
                     </button>
@@ -109,70 +65,67 @@
         </section>
 
         <!-- TABLA DE RESULTADOS -->
-        <section th:if="${reporte != null}" class="fade-in" style="animation-delay: 0.2s;">
-            <div class="glass rounded-2xl overflow-hidden">
-                <div class="px-6 py-4 border-b border-white/5 flex items-center justify-between">
-                    <h2 class="text-xl font-bold text-gray-100 flex items-center gap-2">
-                        <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                        </svg>
+        <section th:if="${reporte != null}">
+            <div class="bg-white border border-slate-200 shadow-sm rounded-xl overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+                    <h2 class="text-lg font-bold text-slate-800">
                         Reporte de Costos por Repartidor
                     </h2>
-                    <span class="text-sm text-gray-400" th:text="'Resultados: ' + ${#lists.size(reporte)}"></span>
+                    <span class="text-sm text-slate-400" th:text="'Resultados: ' + ${#lists.size(reporte)}"></span>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm">
                         <thead>
-                            <tr class="text-left text-xs uppercase tracking-wider text-gray-400 bg-gray-800/40">
-                                <th class="px-6 py-4 font-semibold">Repartidor</th>
-                                <th class="px-6 py-4 font-semibold text-center">Envíos</th>
-                                <th class="px-6 py-4 font-semibold text-right">Total kg</th>
-                                <th class="px-6 py-4 font-semibold">Zona(s)</th>
-                                <th class="px-6 py-4 font-semibold text-right">Tarifa Aplicada</th>
-                                <th class="px-6 py-4 font-semibold text-right">Costo Total</th>
+                            <tr class="text-left text-xs uppercase tracking-wider text-slate-500 bg-slate-50">
+                                <th class="px-6 py-3 font-semibold">Repartidor</th>
+                                <th class="px-6 py-3 font-semibold text-center">Envíos</th>
+                                <th class="px-6 py-3 font-semibold text-right">Total kg</th>
+                                <th class="px-6 py-3 font-semibold">Zona(s)</th>
+                                <th class="px-6 py-3 font-semibold text-right">Tarifa Aplicada</th>
+                                <th class="px-6 py-3 font-semibold text-right">Costo Total</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-white/5">
+                        <tbody class="divide-y divide-slate-100">
                             <tr th:each="row : ${reporte}" class="table-row-hover">
                                 <!-- Repartidor -->
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
-                                        <div class="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center">
-                                            <span class="text-indigo-300 font-bold text-xs" th:text="${#strings.substring(row.nombreRepartidor, 0, 1)}"></span>
+                                        <div class="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center">
+                                            <span class="text-indigo-600 font-bold text-xs" th:text="${#strings.substring(row.nombreRepartidor, 0, 1)}"></span>
                                         </div>
-                                        <span class="font-medium text-gray-100" th:text="${row.nombreRepartidor}"></span>
+                                        <span class="font-medium text-slate-800" th:text="${row.nombreRepartidor}"></span>
                                     </div>
                                 </td>
                                 <!-- Envíos -->
                                 <td class="px-6 py-4 text-center">
                                     <span th:if="${row.cantidadEnvios > 0}"
-                                          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-400"
+                                          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700"
                                           th:text="${row.cantidadEnvios}"></span>
                                     <span th:if="${row.cantidadEnvios == 0}"
-                                          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-500/15 text-gray-400">
+                                          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-400">
                                         0
                                     </span>
                                 </td>
                                 <!-- Total kg -->
-                                <td class="px-6 py-4 text-right text-gray-300">
+                                <td class="px-6 py-4 text-right text-slate-600">
                                     <span th:if="${row.cantidadEnvios > 0}" th:text="${row.totalKg} + ' kg'"></span>
-                                    <span th:if="${row.cantidadEnvios == 0}" class="text-gray-500">—</span>
+                                    <span th:if="${row.cantidadEnvios == 0}" class="text-slate-300">—</span>
                                 </td>
                                 <!-- Zona(s) -->
-                                <td class="px-6 py-4 text-gray-300">
+                                <td class="px-6 py-4 text-slate-600">
                                     <span th:text="${row.zonas}"></span>
                                 </td>
                                 <!-- Tarifa Aplicada -->
-                                <td class="px-6 py-4 text-right text-gray-300">
+                                <td class="px-6 py-4 text-right text-slate-600">
                                     <span th:text="${row.tarifas}"></span>
                                 </td>
                                 <!-- Costo Total -->
                                 <td class="px-6 py-4 text-right">
                                     <span th:if="${row.costoTotal.compareTo(T(java.math.BigDecimal).ZERO) > 0}"
-                                          class="font-bold text-emerald-400"
+                                          class="font-bold text-emerald-700"
                                           th:text="'$' + ${#numbers.formatDecimal(row.costoTotal, 1, 2)}"></span>
                                     <span th:if="${row.costoTotal.compareTo(T(java.math.BigDecimal).ZERO) == 0}"
-                                          class="text-gray-500">$0.00</span>
+                                          class="text-slate-300">$0.00</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -182,24 +135,24 @@
         </section>
 
         <!-- ESTADO INICIAL VACÍO -->
-        <section th:if="${reporte == null}" class="fade-in" style="animation-delay: 0.2s;">
-            <div class="glass rounded-2xl p-10 text-center">
-                <div class="w-16 h-16 mx-auto mb-5 rounded-2xl bg-indigo-500/10 flex items-center justify-center">
-                    <svg class="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <section th:if="${reporte == null}">
+            <div class="bg-white border border-slate-200 shadow-sm rounded-xl p-10 text-center">
+                <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-indigo-50 flex items-center justify-center">
+                    <svg class="w-7 h-7 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                     </svg>
                 </div>
-                <h3 class="text-xl font-bold text-gray-200 mb-2">Selecciona un rango de fechas</h3>
-                <p class="text-gray-400 max-w-md mx-auto">
-                    Para generar el reporte de costos de distribución, ingresa una fecha de inicio y una fecha de fin
-                    en el formulario superior y presiona <strong class="text-indigo-400">Filtrar y Procesar</strong>.
+                <h3 class="text-lg font-bold text-slate-700 mb-2">Selecciona un rango de fechas</h3>
+                <p class="text-slate-400 max-w-md mx-auto">
+                    Ingresa una fecha de inicio y una fecha de fin en el formulario superior y presiona
+                    <strong class="text-indigo-600">Filtrar y Procesar</strong> para generar el reporte.
                 </p>
             </div>
         </section>
 
         <!-- FOOTER -->
-        <footer class="text-center mt-10 text-gray-500 text-sm">
-            <p>MiniCore Logística &copy; 2025 — Spring Boot 3 · Thymeleaf · JPA · PostgreSQL</p>
+        <footer class="text-center mt-10 text-slate-400 text-sm">
+            <p>MiniCore Logística &copy; 2026 — Spring Boot 3 · Thymeleaf · JPA · PostgreSQL</p>
         </footer>
 
     </div>
